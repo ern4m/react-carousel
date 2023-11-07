@@ -11,6 +11,40 @@ type CarouselProps = {
   slides: Slide[][]
 }
 
+const SlideGen = (props: {images: Slide[]}) => {
+  const images = props.images
+  const len = images.length
+
+  switch (len) {
+    case 1:
+      return (
+        <div className="">
+          Case 1
+        </div>   
+      );
+    case 2:
+      return (
+        <div className="">
+          Case 2
+        </div>   
+      );
+    case 3:
+      return (
+        <div className="flex h-screen w-screen bg-yellow-100 space-x-1">
+          <div className="w-1/2 md:w-1/3 bg-green-100 max-h-full">1</div>
+          <div className="flex-column md:flex w-1/2 md:w-2/3 md:space-x-1 space-y-1 max-h-full bg-blue-100">
+            <div className="bg-green-100 md:w-1/2 md:h-full h-1/2">2</div>
+            <div className="bg-green-100 md:w-1/2 md:h-full h-1/2">3</div>
+          </div>
+        </div>   
+      );
+    default:
+      return (
+         <></> 
+      );
+  }
+}
+
 function FullScreenCarousel(props :CarouselProps) {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
@@ -25,33 +59,11 @@ function FullScreenCarousel(props :CarouselProps) {
     return () => clearInterval(timer); // Cleanup when the component unmounts
   }, [activeSlideIndex, slides]);
 
-  console.log(imagesToDisplay.length)
+  console.log(imagesToDisplay)
 
   return (
-      <div className="h-screen h-width flex flex-no-wrap bg-red-400 space-x-2 items-center overflow-scroll">
-        {imagesToDisplay.map((image, idx) => (
-          <div
-            key={idx}
-            className={`w-1/${imagesToDisplay.length === 3 ? '2' : '3'} p-1 basis-1/2`}
-          >
-            <Image
-              src={image.image}
-              alt="test"
-              width={image.image.width}
-              height={image.image.height}
-            />
-          </div>
-          //<>
-          //  <Image
-          //    src={image.image}
-          //    alt="test"
-          //    width={image.image.width}
-          //    height={image.image.height}
-          //    className={"w-auto h-auto max-w-full max-h-full"}
-          //    //style={{ width: `${image.scale * 100}%` }}
-          //  />
-          //</>
-        ))}
+      <div className="h-screen h-width flex flex-no-wrap text-black bg-red-400 space-x-1 space-y-1 items-center overflow-none">
+        <SlideGen images={imagesToDisplay} />
       </div>        
   );
 }
