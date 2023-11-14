@@ -18,23 +18,41 @@ const SlideGen = (props: {images: Slide[]}) => {
   switch (len) {
     case 1:
       return (
-        <div className="">
-          Case 1
+        <div className="flex justify-center items-center h-screen w-screen bg-yellow-300 space-x-1">
+          <div className="bg-green-400 ">
+            1
+          </div>
         </div>   
       );
     case 2:
       return (
-        <div className="">
-          Case 2
+        <div className="flex justify-center items-center h-screen w-screen bg-yellow-300 space-x-1">
+            <div className="bg-green-400 w-1/2 h-full h-1/2">1</div>
+            <div className="bg-green-400 w-1/2 h-full h-1/2">2</div>
         </div>   
       );
     case 3:
       return (
-        <div className="flex h-screen w-screen bg-yellow-100 space-x-1">
-          <div className="w-1/2 md:w-1/3 bg-green-100 max-h-full">1</div>
-          <div className="flex-column md:flex w-1/2 md:w-2/3 md:space-x-1 space-y-1 max-h-full bg-blue-100">
-            <div className="bg-green-100 md:w-1/2 md:h-full h-1/2">2</div>
-            <div className="bg-green-100 md:w-1/2 md:h-full h-1/2">3</div>
+        <div className="flex h-4/5 w-screen bg-yellow-300 space-x-1 overflow-scroll">
+          <div className="w-1/2 md:w-1/3 bg-green-100 max-h-full">
+            <Image 
+              src={images[0].image}
+              className="w-full h-full"
+            />
+          </div>
+          <div className="flex-column md:flex w-1/2 md:w-2/3 md:space-x-1 max-h-full bg-blue-300">
+            <div className="bg-green-100 md:w-1/2 md:h-full h-1/2">
+              <Image 
+                src={images[1].image}
+                className="w-full h-full"
+              />
+            </div>
+            <div className="bg-green-100 md:w-1/2 md:h-full h-1/2">
+              <Image 
+                src={images[2].image}
+                className="w-full h-full"
+              />
+            </div>
           </div>
         </div>   
       );
