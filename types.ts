@@ -1,6 +1,6 @@
 import { StaticImageData } from "next/image";
 
-export default interface Slide {
+export default interface SlideImage {
   image: StaticImageData;
   scale: number;
 }
