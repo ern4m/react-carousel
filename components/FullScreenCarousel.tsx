@@ -5,52 +5,65 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import Image, { StaticImageData } from "next/image";
-import Slide from "@/types";
+import SlideImage from "@/types";
 
 type CarouselProps = {
-  slides: Slide[][]
+  slides: SlideImage[][]
 }
 
-const SlideGen = (props: {images: Slide[]}) => {
+const SlideGen = (props: {images: SlideImage[]}) => {
   const images = props.images
   const len = images.length
 
   switch (len) {
     case 1:
       return (
-        <div className="flex justify-center items-center h-screen w-screen bg-yellow-300 space-x-1">
-          <div className="bg-green-400 ">
-            1
+        <div className="flex justify-center items-center h-screen w-screen bg-yellow-300 space-x-1 slide-container">
+          <div className="bg-green-400 w-full h-full flex items-center justify-center">
+              <Image 
+                src={images[0].image}
+                className="max-w-full h-auto mx-auto"
+              />
           </div>
         </div>   
       );
     case 2:
       return (
-        <div className="flex justify-center items-center h-screen w-screen bg-yellow-300 space-x-1">
-            <div className="bg-green-400 w-1/2 h-full h-1/2">1</div>
-            <div className="bg-green-400 w-1/2 h-full h-1/2">2</div>
+        <div className="flex justify-center items-center h-screen w-screen bg-yellow-300 space-x-1 slide-container">
+            <div className="bg-green-400 w-1/2 h-full h-1/2 flex items-center justify-center">
+              <Image 
+                src={images[0].image}
+                className="max-w-full h-auto mx-auto"
+              />
+            </div>
+            <div className="bg-green-400 w-1/2 h-full h-1/2 flex items-center justify-center">
+              <Image 
+                src={images[0].image}
+                className="max-w-full h-auto mx-auto"
+              />
+            </div>
         </div>   
       );
     case 3:
       return (
-        <div className="flex h-4/5 w-screen bg-yellow-300 space-x-1 overflow-scroll">
-          <div className="w-1/2 md:w-1/3 bg-green-100 max-h-full">
+        <div className="flex h-4/5 w-screen bg-yellow-300 space-x-1 overflow-clip slide-container">
+          <div className="w-1/2 md:w-1/3 bg-green-100 max-h-full flex items-center justify-center">
             <Image 
               src={images[0].image}
-              className="w-full h-full"
+              className="max-w-full h-auto mx-auto"
             />
           </div>
           <div className="flex-column md:flex w-1/2 md:w-2/3 md:space-x-1 max-h-full bg-blue-300">
-            <div className="bg-green-100 md:w-1/2 md:h-full h-1/2">
+            <div className="bg-green-100 md:w-1/2 md:h-full h-1/2 flex items-center justify-center">
               <Image 
                 src={images[1].image}
-                className="w-full h-full"
+                className="max-w-full h-auto mx-auto"
               />
             </div>
-            <div className="bg-green-100 md:w-1/2 md:h-full h-1/2">
+            <div className="bg-green-100 md:w-1/2 md:h-full h-1/2 flex items-center justify-center">
               <Image 
                 src={images[2].image}
-                className="w-full h-full"
+                className="max-w-full h-auto mx-auto"
               />
             </div>
           </div>
@@ -80,8 +93,8 @@ function FullScreenCarousel(props :CarouselProps) {
   console.log(imagesToDisplay)
 
   return (
-      <div className="h-screen h-width flex flex-no-wrap text-black bg-red-400 space-x-1 space-y-1 items-center overflow-none">
-        <SlideGen images={imagesToDisplay} />
+      <div className="h-4/5 w-screen flex flex-no-wrap text-black bg-red-400 space-x-1 space-y-1 items-center overflow-none">
+          <SlideGen images={imagesToDisplay} />
       </div>        
   );
 }

@@ -3,9 +3,9 @@ import { Inter } from 'next/font/google'
 import FullScreenCarousel from '@/components/FullScreenCarousel'
 import man from "../public/images/man.png"
 import bird from "../public/images/bird.png"
-import Slide from '@/types'
+import SlideImage from '@/types'
 
-const slides: Slide[][] = [[
+const slides: SlideImage[][] = [[
  {image: man, scale: 2},
  {image: bird, scale: 1},
  {image: man, scale: 1},
